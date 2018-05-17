@@ -118,11 +118,11 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         initLayout()
         // 初始化识别无UI识别对象
         // 使用SpeechRecognizer对象，可根据回调消息自定义界面；
-        speechRecognizer = SpeechRecognizer.createRecognizer(this@SpeechRecognizeActivity, mInitListener)
+        speechRecognizer = SpeechRecognizer.createRecognizer(this, mInitListener)
 
         // 初始化听写Dialog，如果只使用有UI听写功能，无需创建SpeechRecognizer
         // 使用UI听写功能，请根据sdk文件目录下的notice.txt,放置布局文件和图片资源
-        recognizerDialog = RecognizerDialog(this@SpeechRecognizeActivity, mInitListener)
+        recognizerDialog = RecognizerDialog(this, mInitListener)
 
         sharedPreferences = getSharedPreferences(IatSettings.PREFER_NAME,
                 Activity.MODE_PRIVATE)
@@ -130,13 +130,13 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
     }
 
     /**
-     * 初始化Layout。
+     * 初始化Layout
      */
     private fun initLayout() {
-        iat_recognize.setOnClickListener(this@SpeechRecognizeActivity)
-        iat_stop.setOnClickListener(this@SpeechRecognizeActivity)
-        iat_cancel.setOnClickListener(this@SpeechRecognizeActivity)
-        image_iat_set.setOnClickListener(this@SpeechRecognizeActivity)
+        iat_recognize.setOnClickListener(this)
+        iat_stop.setOnClickListener(this)
+        iat_cancel.setOnClickListener(this)
+        image_iat_set.setOnClickListener(this)
     }
 
     override fun onClick(view: View) {
@@ -158,7 +158,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
                 // 移动数据分析，收集开始听写事件
                 FlowerCollector.onEvent(this, "iat_recognize")
 
-                etResult.setText(null)// 清空显示内容
+                etResult.text = null// 清空显示内容
                 recognizeResults.clear()
                 // 设置参数
                 setParam()
