@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
@@ -114,7 +115,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_speech_recognize)
 
-        initLayout()
+        setViewListener()
         // 初始化识别无UI识别对象
         // 使用SpeechRecognizer对象，可根据回调消息自定义界面；
         speechRecognizer = SpeechRecognizer.createRecognizer(this, mInitListener)
@@ -131,11 +132,12 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
     /**
      * 初始化Layout
      */
-    private fun initLayout() {
+    private fun setViewListener() {
         iat_recognize.setOnClickListener(this)
         iat_stop.setOnClickListener(this)
         iat_cancel.setOnClickListener(this)
         image_iat_set.setOnClickListener(this)
+        btnPlayVoice.setOnClickListener(this)
     }
 
     override fun onClick(view: View) {
@@ -187,6 +189,10 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
             R.id.iat_cancel -> {
                 speechRecognizer!!.cancel()
                 showTip("取消听写")
+            }
+            R.id.btnPlayVoice->{
+                val mp = MediaPlayer()
+
             }
             else -> {
             }
