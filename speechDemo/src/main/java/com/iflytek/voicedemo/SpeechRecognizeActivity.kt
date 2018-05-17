@@ -13,27 +13,15 @@ import android.view.View.OnClickListener
 import android.view.Window
 import android.widget.EditText
 import android.widget.Toast
-
-import com.iflytek.cloud.ErrorCode
-import com.iflytek.cloud.InitListener
-import com.iflytek.cloud.LexiconListener
-import com.iflytek.cloud.RecognizerListener
-import com.iflytek.cloud.RecognizerResult
-import com.iflytek.cloud.SpeechConstant
-import com.iflytek.cloud.SpeechError
-import com.iflytek.cloud.SpeechRecognizer
+import com.iflytek.cloud.*
 import com.iflytek.cloud.ui.RecognizerDialog
 import com.iflytek.cloud.ui.RecognizerDialogListener
-import com.iflytek.cloud.util.ContactManager.ContactListener
 import com.iflytek.speech.setting.IatSettings
 import com.iflytek.speech.util.JsonParser
 import com.iflytek.sunflower.FlowerCollector
-
 import org.json.JSONException
 import org.json.JSONObject
-
-import java.util.HashMap
-import java.util.LinkedHashMap
+import java.util.*
 
 class SpeechRecognizeActivity : Activity(), OnClickListener {
     // 语音听写对象
@@ -60,17 +48,6 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         Log.d(TAG, "SpeechRecognizer init() code = " + code)
         if (code != ErrorCode.SUCCESS) {
             showTip("初始化失败，错误码：" + code)
-        }
-    }
-
-    /**
-     * 上传联系人/词表监听器。
-     */
-    private val mLexiconListener = LexiconListener { lexiconId, error ->
-        if (error != null) {
-            showTip(error.toString())
-        } else {
-            showTip(getString(R.string.text_upload_success))
         }
     }
 
@@ -195,8 +172,8 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         when (view.id) {
         // 进入参数设置页面
             R.id.image_iat_set -> {
-//                val intents = Intent(this, IatSettings::class.java)
-//                startActivity(intents)
+                val intents = Intent(this, IatSettings::class.java)
+                startActivity(intents)
             }
         // 开始听写
         // 如何判断一次听写结束：OnResult isLast=true 或者 onError
