@@ -179,7 +179,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         // 如何判断一次听写结束：OnResult isLast=true 或者 onError
             R.id.iat_recognize -> {
                 // 移动数据分析，收集开始听写事件
-                FlowerCollector.onEvent(this@SpeechRecognizeActivity, "iat_recognize")
+                FlowerCollector.onEvent(this, "iat_recognize")
 
                 etResult!!.setText(null)// 清空显示内容
                 recognizeResults.clear()
