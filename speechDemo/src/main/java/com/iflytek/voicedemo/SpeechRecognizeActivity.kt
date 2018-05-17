@@ -31,12 +31,10 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
     // 用HashMap存储听写结果
     private val recognizeResults = LinkedHashMap<String, String>()
 
-    private var mToast: Toast? = null
-    private var mSharedPreferences: SharedPreferences? = null
+    private var toast: Toast? = null
+    private var sharedPreferences: SharedPreferences? = null
     // 引擎类型
-    private val mEngineType = SpeechConstant.TYPE_CLOUD
-
-    private var mTranslateEnable = false
+    private val engineType = SpeechConstant.TYPE_CLOUD
 
     internal var ret = 0 // 函数调用返回值
 
@@ -54,20 +52,14 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
      * 听写监听器。
      */
     private val mRecognizerListener = object : RecognizerListener {
-
         override fun onBeginOfSpeech() {
             // 此回调表示：sdk内部录音机已经准备好了，用户可以开始语音输入
             showTip("开始说话")
         }
 
         override fun onError(error: SpeechError) {
-            // Tips：
             // 错误码：10118(您没有说话)，可能是录音机权限被禁，需要提示用户打开应用的录音权限。
-            if (mTranslateEnable && error.errorCode == 14002) {
-                showTip(error.getPlainDescription(true) + "\n请确认是否已开通翻译功能")
-            } else {
-                showTip(error.getPlainDescription(true))
-            }
+            showTip(error.getPlainDescription(true))
         }
 
         override fun onEndOfSpeech() {
@@ -77,11 +69,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
 
         override fun onResult(results: RecognizerResult, isLast: Boolean) {
             Log.d(TAG, results.resultString)
-            if (mTranslateEnable) {
-                printTransResult(results)
-            } else {
-                printResult(results)
-            }
+            printResult(results)
 
             if (isLast) {
                 // TODO 最后的结果
@@ -108,23 +96,14 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
      */
     private val mRecognizerDialogListener = object : RecognizerDialogListener {
         override fun onResult(results: RecognizerResult, isLast: Boolean) {
-            if (mTranslateEnable) {
-                printTransResult(results)
-            } else {
-                printResult(results)
-            }
-
+            printResult(results)
         }
 
         /**
          * 识别回调错误.
          */
         override fun onError(error: SpeechError) {
-            if (mTranslateEnable && error.errorCode == 14002) {
-                showTip(error.getPlainDescription(true) + "\n请确认是否已开通翻译功能")
-            } else {
-                showTip(error.getPlainDescription(true))
-            }
+            showTip(error.getPlainDescription(true))
         }
 
     }
@@ -145,9 +124,9 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         // 使用UI听写功能，请根据sdk文件目录下的notice.txt,放置布局文件和图片资源
         recognizerDialog = RecognizerDialog(this@SpeechRecognizeActivity, mInitListener)
 
-        mSharedPreferences = getSharedPreferences(IatSettings.PREFER_NAME,
+        sharedPreferences = getSharedPreferences(IatSettings.PREFER_NAME,
                 Activity.MODE_PRIVATE)
-        mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT)
+        toast = Toast.makeText(this, "", Toast.LENGTH_SHORT)
     }
 
     /**
@@ -183,7 +162,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
                 recognizeResults.clear()
                 // 设置参数
                 setParam()
-                val isShowDialog = mSharedPreferences!!.getBoolean(
+                val isShowDialog = sharedPreferences!!.getBoolean(
                         getString(R.string.pref_key_iat_show), true)
                 if (isShowDialog) {
                     // 显示听写对话框
@@ -239,8 +218,8 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
     }
 
     private fun showTip(str: String) {
-        mToast!!.setText(str)
-        mToast!!.show()
+        toast!!.setText(str)
+        toast!!.show()
     }
 
     /**
@@ -253,68 +232,40 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         speechRecognizer!!.setParameter(SpeechConstant.PARAMS, null)
 
         // 设置听写引擎
-        speechRecognizer!!.setParameter(SpeechConstant.ENGINE_TYPE, mEngineType)
+        speechRecognizer!!.setParameter(SpeechConstant.ENGINE_TYPE, engineType)
         // 设置返回结果格式
         speechRecognizer!!.setParameter(SpeechConstant.RESULT_TYPE, "json")
 
-        this.mTranslateEnable = mSharedPreferences!!.getBoolean(this.getString(R.string.pref_key_translate), false)
-        if (mTranslateEnable) {
-            Log.i(TAG, "translate enable")
-            speechRecognizer!!.setParameter(SpeechConstant.ASR_SCH, "1")
-            speechRecognizer!!.setParameter(SpeechConstant.ADD_CAP, "translate")
-            speechRecognizer!!.setParameter(SpeechConstant.TRS_SRC, "its")
-        }
-
-        val lag = mSharedPreferences!!.getString("iat_language_preference",
+        val lag = sharedPreferences!!.getString("iat_language_preference",
                 "mandarin")
         if (lag == "en_us") {
             // 设置语言
             speechRecognizer!!.setParameter(SpeechConstant.LANGUAGE, "en_us")
             speechRecognizer!!.setParameter(SpeechConstant.ACCENT, null)
 
-            if (mTranslateEnable) {
-                speechRecognizer!!.setParameter(SpeechConstant.ORI_LANG, "en")
-                speechRecognizer!!.setParameter(SpeechConstant.TRANS_LANG, "cn")
-            }
         } else {
             // 设置语言
             speechRecognizer!!.setParameter(SpeechConstant.LANGUAGE, "zh_cn")
             // 设置语言区域
             speechRecognizer!!.setParameter(SpeechConstant.ACCENT, lag)
 
-            if (mTranslateEnable) {
-                speechRecognizer!!.setParameter(SpeechConstant.ORI_LANG, "cn")
-                speechRecognizer!!.setParameter(SpeechConstant.TRANS_LANG, "en")
-            }
         }
         //此处用于设置dialog中不显示错误码信息
         //mIat.setParameter("view_tips_plain","false");
 
         // 设置语音前端点:静音超时时间，即用户多长时间不说话则当做超时处理
-        speechRecognizer!!.setParameter(SpeechConstant.VAD_BOS, mSharedPreferences!!.getString("iat_vadbos_preference", "4000"))
+        speechRecognizer!!.setParameter(SpeechConstant.VAD_BOS, sharedPreferences!!.getString("iat_vadbos_preference", "4000"))
 
         // 设置语音后端点:后端点静音检测时间，即用户停止说话多长时间内即认为不再输入， 自动停止录音
-        speechRecognizer!!.setParameter(SpeechConstant.VAD_EOS, mSharedPreferences!!.getString("iat_vadeos_preference", "1000"))
+        speechRecognizer!!.setParameter(SpeechConstant.VAD_EOS, sharedPreferences!!.getString("iat_vadeos_preference", "1000"))
 
         // 设置标点符号,设置为"0"返回结果无标点,设置为"1"返回结果有标点
-        speechRecognizer!!.setParameter(SpeechConstant.ASR_PTT, mSharedPreferences!!.getString("iat_punc_preference", "1"))
+        speechRecognizer!!.setParameter(SpeechConstant.ASR_PTT, sharedPreferences!!.getString("iat_punc_preference", "1"))
 
         // 设置音频保存路径，保存音频格式支持pcm、wav，设置路径为sd卡请注意WRITE_EXTERNAL_STORAGE权限
         // 注：AUDIO_FORMAT参数语记需要更新版本才能生效
         speechRecognizer!!.setParameter(SpeechConstant.AUDIO_FORMAT, "wav")
         speechRecognizer!!.setParameter(SpeechConstant.ASR_AUDIO_PATH, Environment.getExternalStorageDirectory().toString() + "/msc/iat.wav")
-    }
-
-    private fun printTransResult(results: RecognizerResult) {
-        val trans = JsonParser.parseTransResult(results.resultString, "dst")
-        val oris = JsonParser.parseTransResult(results.resultString, "src")
-
-        if (TextUtils.isEmpty(trans) || TextUtils.isEmpty(oris)) {
-            showTip("解析结果失败，请确认是否已开通翻译功能。")
-        } else {
-            etResult.setText("原始语言:\n$oris\n目标语言:\n$trans")
-        }
-
     }
 
     override fun onDestroy() {
