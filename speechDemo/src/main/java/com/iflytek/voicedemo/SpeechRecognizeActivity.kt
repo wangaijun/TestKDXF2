@@ -11,7 +11,6 @@ import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.Window
-import android.widget.EditText
 import android.widget.Toast
 import com.iflytek.cloud.*
 import com.iflytek.cloud.ui.RecognizerDialog
@@ -22,6 +21,7 @@ import com.iflytek.sunflower.FlowerCollector
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
+import kotlinx.android.synthetic.main.activity_speech_recognize.*
 
 class SpeechRecognizeActivity : Activity(), OnClickListener {
     // 语音听写对象
@@ -31,7 +31,6 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
     // 用HashMap存储听写结果
     private val recognizeResults = LinkedHashMap<String, String>()
 
-    private var etResult: EditText? = null
     private var mToast: Toast? = null
     private var mSharedPreferences: SharedPreferences? = null
     // 引擎类型
@@ -149,17 +148,16 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         mSharedPreferences = getSharedPreferences(IatSettings.PREFER_NAME,
                 Activity.MODE_PRIVATE)
         mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT)
-        etResult = findViewById(R.id.iat_text) as EditText
     }
 
     /**
      * 初始化Layout。
      */
     private fun initLayout() {
-        findViewById(R.id.iat_recognize).setOnClickListener(this@SpeechRecognizeActivity)
-        findViewById(R.id.iat_stop).setOnClickListener(this@SpeechRecognizeActivity)
-        findViewById(R.id.iat_cancel).setOnClickListener(this@SpeechRecognizeActivity)
-        findViewById(R.id.image_iat_set).setOnClickListener(this@SpeechRecognizeActivity)
+        iat_recognize.setOnClickListener(this@SpeechRecognizeActivity)
+        iat_stop.setOnClickListener(this@SpeechRecognizeActivity)
+        iat_cancel.setOnClickListener(this@SpeechRecognizeActivity)
+        image_iat_set.setOnClickListener(this@SpeechRecognizeActivity)
     }
 
     override fun onClick(view: View) {
@@ -181,7 +179,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
                 // 移动数据分析，收集开始听写事件
                 FlowerCollector.onEvent(this, "iat_recognize")
 
-                etResult!!.setText(null)// 清空显示内容
+                etResult.setText(null)// 清空显示内容
                 recognizeResults.clear()
                 // 设置参数
                 setParam()
@@ -236,8 +234,8 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
             resultBuffer.append(recognizeResults[key])
         }
 
-        etResult!!.setText(resultBuffer.toString())
-        etResult!!.setSelection(etResult!!.length())
+        etResult.setText(resultBuffer.toString())
+        etResult.setSelection(etResult.length())
     }
 
     private fun showTip(str: String) {
@@ -314,7 +312,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         if (TextUtils.isEmpty(trans) || TextUtils.isEmpty(oris)) {
             showTip("解析结果失败，请确认是否已开通翻译功能。")
         } else {
-            etResult!!.setText("原始语言:\n$oris\n目标语言:\n$trans")
+            etResult.setText("原始语言:\n$oris\n目标语言:\n$trans")
         }
 
     }
