@@ -17,7 +17,6 @@ import com.iflytek.cloud.ui.RecognizerDialog
 import com.iflytek.cloud.ui.RecognizerDialogListener
 import com.iflytek.speech.setting.SpeechRecognizeSettings
 import com.iflytek.speech.util.JsonParser
-import com.iflytek.sunflower.FlowerCollector
 import kotlinx.android.synthetic.main.activity_speech_recognize.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -157,9 +156,6 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         // 开始听写
         // 如何判断一次听写结束：OnResult isLast=true 或者 onError
             R.id.iat_recognize -> {
-                // 移动数据分析，收集开始听写事件
-                FlowerCollector.onEvent(this, "iat_recognize")
-
                 etResult.text = null// 清空显示内容
                 recognizeResults.clear()
                 // 设置参数
@@ -284,20 +280,6 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
             speechRecognizer!!.cancel()
             speechRecognizer!!.destroy()
         }
-    }
-
-    override fun onResume() {
-        // 开放统计 移动数据统计分析
-        FlowerCollector.onResume(this)
-        FlowerCollector.onPageStart(TAG)
-        super.onResume()
-    }
-
-    override fun onPause() {
-        // 开放统计 移动数据统计分析
-        FlowerCollector.onPageEnd(TAG)
-        FlowerCollector.onPause(this)
-        super.onPause()
     }
 
     companion object {
