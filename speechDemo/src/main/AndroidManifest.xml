@@ -14,11 +14,7 @@
             android:icon="@drawable/icon"
             android:label="讯飞语音示例"
             android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name="com.iflytek.speech.setting.TtsSettings" >
         </activity>
@@ -28,6 +24,11 @@
             android:name="com.iflytek.voicedemo.SpeechRecognizeActivity"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
             android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.iflytek.voicedemo.AsrDemo"
