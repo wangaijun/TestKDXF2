@@ -27,6 +27,7 @@
         <activity android:name="com.iflytek.speech.setting.SpeechRecognizeSettings"></activity>
         <activity
             android:name=".SpeechRecognizeActivity"
+            android:theme="@style/dialog"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
             android:screenOrientation="portrait">
         </activity>
