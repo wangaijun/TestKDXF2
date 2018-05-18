@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" > 
+    
+    <ListPreference
+        android:key="iat_language_preference"
+        android:title="语言设置"
+        android:entries="@array/language_entries"
+        android:entryValues="@array/language_values"
+        android:summary="支持：普通话，粤语，英语 "
+        android:defaultValue="mandarin"  />
+
+	<CheckBoxPreference
+		android:key="@string/pref_key_iat_show"
+		android:title="@string/pref_title_iat_show"
+		android:defaultValue="true" />
+
+</PreferenceScreen>
+
