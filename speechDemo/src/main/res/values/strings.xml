@@ -114,6 +114,28 @@
         <item>普通话</item>
         <item>粤语</item>
         <item>英语</item>
+        <item>四川话</item>
+        <item>东北话</item>
+        <item>河南话</item>
+        <item>河北话</item>
+        <item>闽南语</item>
+        <item>客家话</item>
+        <item>贵州话</item>
+        <item>甘肃话</item>
+        <item>宁夏话</item>
+        <item>云南话（昆明）</item>
+        <item>湖南话（长沙）</item>
+        <item>山东话（济南）</item>
+        <item>山西话（太原）</item>
+        <item>陕西话（西安）</item>
+        <item>江西话（南昌）</item>
+        <item>皖北话</item>
+        <item>上海话</item>
+        <item>天津话</item>
+        <item>南京话</item>
+        <item>武汉话</item>
+        <item>合肥话</item>
+        <item>国语（台湾）</item>
     </string-array>
     <string-array name="language_values">
         <item>mandarin</item>
