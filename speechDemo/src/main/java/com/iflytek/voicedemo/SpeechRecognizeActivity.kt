@@ -134,7 +134,6 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
      */
     private fun setViewListener() {
         iat_recognize.setOnClickListener(this)
-        iat_stop.setOnClickListener(this)
         iat_cancel.setOnClickListener(this)
         image_iat_set.setOnClickListener(this)
         btnPlayVoice.setOnClickListener(this)
@@ -172,21 +171,15 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
                     // 不显示听写对话框
                     ret = speechRecognizer!!.startListening(mRecognizerListener)
                     if (ret != ErrorCode.SUCCESS) {
-                        showTip("听写失败,错误码：" + ret)
+                        showTip("听写失败,错误码：$ret")
                     } else {
                         showTip(getString(R.string.text_begin))
                     }
                 }
             }
-        // 停止听写
-            R.id.iat_stop -> {
-                speechRecognizer!!.stopListening()
-                showTip("停止听写")
-            }
-        // 取消听写
+         // 取消听写
             R.id.iat_cancel -> {
-                speechRecognizer!!.cancel()
-                showTip("取消听写")
+                finish()
             }
             R.id.btnPlayVoice->{
                 val mp = MediaPlayer()

@@ -65,11 +65,11 @@
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/iat_stop"
+            android:id="@+id/save"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="停止"
+            android:text="保存"
             android:textSize="20sp" />
 
         <Button
@@ -77,15 +77,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="取消"
+            android:text="关闭"
             android:textSize="20sp" />
-        <Button
-            android:id="@+id/save"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="保存"
-            android:textSize="20sp" />
+
     </LinearLayout>
 
 </LinearLayout>
