@@ -23,11 +23,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.iflytek.voicedemo.vocalverify.VocalVerifyDemo"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
             android:name="com.iflytek.voicedemo.faceonline.OnlineFaceDemo"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
             android:screenOrientation="portrait" >

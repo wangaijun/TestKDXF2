@@ -19,7 +19,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.iflytek.cloud.ErrorCode;
@@ -29,11 +28,9 @@ import com.iflytek.cloud.IdentityVerifier;
 import com.iflytek.cloud.InitListener;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechError;
-import com.iflytek.cloud.SpeechUtility;
 import com.iflytek.speech.util.FaceUtil;
 import com.iflytek.voicedemo.IdentifyGroup.GroupManagerActivity;
 import com.iflytek.voicedemo.R;
-import com.iflytek.voicedemo.vocalverify.VocalVerifyDemo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
