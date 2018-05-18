@@ -2,54 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.iflytek.voicedemo"
     android:versionCode="1"
-    android:versionName="2.0.1018.1013" >
-
-    <application
-        android:icon="@drawable/icon"
-        android:name="SpeechApp"
-        android:label="讯飞语音示例" >
-        <activity android:name="com.iflytek.speech.setting.SpeechRecognizeSettings" >
-        </activity>
-        <activity
-            android:name="com.iflytek.voicedemo.SpeechRecognizeActivity"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.iflytek.voicedemo.IdentifyGroup.GroupManagerActivity"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.iflytek.voicedemo.IdentifyGroup.FaceIdentifyActivity"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.iflytek.voicedemo.IdentifyGroup.VocalIdentifyActivity"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.iflytek.voicedemo.IdentifyGroup.ResultIdentifyActivity"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
-            android:screenOrientation="portrait">
-        </activity>
-        <!-- 移动统计分析 -->
-        <meta-data
-            android:name="IFLYTEK_APPKEY"
-            android:value="'5afd2651'" />
-        <meta-data
-            android:name="IFLYTEK_CHANNEL"
-            android:value="Android_Demo" />
-
-
-    </application>
+    android:versionName="2.0.1018.1013">
 
     <uses-sdk android:minSdkVersion="8" />
 
@@ -62,9 +15,57 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.WRITE_SETTINGS" />
-	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:name=".SpeechApp"
+        android:icon="@drawable/icon"
+        android:label="讯飞语音示例">
+        <activity android:name="com.iflytek.speech.setting.SpeechRecognizeSettings"></activity>
+        <activity
+            android:name=".SpeechRecognizeActivity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".IdentifyGroup.GroupManagerActivity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".IdentifyGroup.FaceIdentifyActivity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".IdentifyGroup.VocalIdentifyActivity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".IdentifyGroup.ResultIdentifyActivity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
+            android:screenOrientation="portrait"></activity>
+        <!-- 移动统计分析 -->
+        <meta-data
+            android:name="IFLYTEK_APPKEY"
+            android:value="&apos;5afd2651&apos;" />
+        <meta-data
+            android:name="IFLYTEK_CHANNEL"
+            android:value="Android_Demo" />
+
+        <activity android:name="com.iflytek.TestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
 
 </manifest>
