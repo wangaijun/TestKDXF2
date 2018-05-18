@@ -32,19 +32,20 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
     private val recognizeResults = LinkedHashMap<String, String>()
 
     private var toast: Toast? = null
+    // 获取设置结果
     private var sharedPreferences: SharedPreferences? = null
     // 引擎类型
     private val engineType = SpeechConstant.TYPE_CLOUD
 
-    internal var ret = 0 // 函数调用返回值
+    private var ret = 0 // 函数调用返回值
 
     /**
      * 初始化监听器。
      */
     private val mInitListener = InitListener { code ->
-        Log.d(TAG, "SpeechRecognizer init() code = " + code)
+        Log.d(TAG, "SpeechRecognizer init() code = $code")
         if (code != ErrorCode.SUCCESS) {
-            showTip("初始化失败，错误码：" + code)
+            showTip("初始化失败，错误码：$code")
         }
     }
 
@@ -77,8 +78,8 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         }
 
         override fun onVolumeChanged(volume: Int, data: ByteArray) {
-            showTip("当前正在说话，音量大小：" + volume)
-            Log.d(TAG, "返回音频数据：" + data.size)
+            showTip("当前正在说话，音量大小：$volume")
+            Log.d(TAG, "返回音频数据：${data.size}")
         }
 
         override fun onEvent(eventType: Int, arg1: Int, arg2: Int, obj: Bundle?) {
@@ -130,7 +131,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
     }
 
     /**
-     * 初始化Layout
+     * 设置控件的事件处理程序
      */
     private fun setViewListener() {
         iat_recognize.setOnClickListener(this)
