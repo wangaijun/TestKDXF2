@@ -8,8 +8,6 @@
         android:icon="@drawable/icon"
         android:name="SpeechApp"
         android:label="讯飞语音示例" >
-        <activity android:name="com.iflytek.speech.setting.TtsSettings" >
-        </activity>
         <activity android:name="com.iflytek.speech.setting.SpeechRecognizeSettings" >
         </activity>
         <activity
@@ -41,11 +39,6 @@
             android:name="com.iflytek.voicedemo.IdentifyGroup.ResultIdentifyActivity"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
             android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.iflytek.speech.setting.IseSettings"
-            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
-            android:screenOrientation="portrait" >
         </activity>
         <!-- 移动统计分析 -->
         <meta-data
