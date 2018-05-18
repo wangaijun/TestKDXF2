@@ -192,7 +192,9 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
             }
             R.id.btnPlayVoice->{
                 val mp = MediaPlayer()
-
+                mp.setDataSource(Environment.getExternalStorageDirectory().toString() + "/msc/iat.wav")
+                mp.prepare()
+                mp.start()
             }
             else -> {
             }
