@@ -81,7 +81,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
             Log.d(TAG, "返回音频数据：" + data.size)
         }
 
-        override fun onEvent(eventType: Int, arg1: Int, arg2: Int, obj: Bundle) {
+        override fun onEvent(eventType: Int, arg1: Int, arg2: Int, obj: Bundle?) {
             // 以下代码用于获取与云端的会话id，当业务出错时将会话id提供给技术支持人员，可用于查询会话日志，定位出错原因
             // 若使用本地能力，会话id为null
             //	if (SpeechEvent.EVENT_SESSION_ID == eventType) {
