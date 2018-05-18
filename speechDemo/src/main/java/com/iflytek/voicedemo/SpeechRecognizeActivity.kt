@@ -15,7 +15,7 @@ import android.widget.Toast
 import com.iflytek.cloud.*
 import com.iflytek.cloud.ui.RecognizerDialog
 import com.iflytek.cloud.ui.RecognizerDialogListener
-import com.iflytek.speech.setting.IatSettings
+import com.iflytek.speech.setting.SpeechRecognizeSettings
 import com.iflytek.speech.util.JsonParser
 import com.iflytek.sunflower.FlowerCollector
 import kotlinx.android.synthetic.main.activity_speech_recognize.*
@@ -124,7 +124,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         // 使用UI听写功能，请根据sdk文件目录下的notice.txt,放置布局文件和图片资源
         recognizerDialog = RecognizerDialog(this, mInitListener)
 
-        sharedPreferences = getSharedPreferences(IatSettings.PREFER_NAME,
+        sharedPreferences = getSharedPreferences(SpeechRecognizeSettings.PREFER_NAME,
                 Activity.MODE_PRIVATE)
         toast = Toast.makeText(this, "", Toast.LENGTH_SHORT)
     }
@@ -150,7 +150,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         when (view.id) {
         // 进入参数设置页面
             R.id.image_iat_set -> {
-                val intents = Intent(this, IatSettings::class.java)
+                val intents = Intent(this, SpeechRecognizeSettings::class.java)
                 startActivity(intents)
             }
         // 开始听写
