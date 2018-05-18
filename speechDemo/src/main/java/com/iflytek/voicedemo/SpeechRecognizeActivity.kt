@@ -138,6 +138,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         iat_cancel.setOnClickListener(this)
         image_iat_set.setOnClickListener(this)
         btnPlayVoice.setOnClickListener(this)
+        save.setOnClickListener(this)
     }
 
     override fun onClick(view: View) {
@@ -192,6 +193,13 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
                 mp.setDataSource(Environment.getExternalStorageDirectory().toString() + "/msc/iat.wav")
                 mp.prepare()
                 mp.start()
+            }
+            R.id.save->{
+                val intent = Intent()
+                intent.putExtra("txt",etResult.text.toString())
+                intent.putExtra("path",Environment.getExternalStorageDirectory().toString() + "/msc/iat.wav")
+                setResult(RESULT_OK,intent)
+                finish()
             }
             else -> {
             }
