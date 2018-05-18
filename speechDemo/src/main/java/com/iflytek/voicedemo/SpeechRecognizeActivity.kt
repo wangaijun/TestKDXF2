@@ -287,7 +287,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
 
     override fun onResume() {
         // 开放统计 移动数据统计分析
-        FlowerCollector.onResume(this@SpeechRecognizeActivity)
+        FlowerCollector.onResume(this)
         FlowerCollector.onPageStart(TAG)
         super.onResume()
     }
@@ -295,7 +295,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
     override fun onPause() {
         // 开放统计 移动数据统计分析
         FlowerCollector.onPageEnd(TAG)
-        FlowerCollector.onPause(this@SpeechRecognizeActivity)
+        FlowerCollector.onPause(this)
         super.onPause()
     }
 

@@ -6,7 +6,7 @@
         android:title="语言设置"
         android:entries="@array/language_entries"
         android:entryValues="@array/language_values"
-        android:summary="支持：普通话，粤语，英语 "
+        android:summary="目前免费Api仅支持：普通话，粤语，英语，四川话 "
         android:defaultValue="mandarin"  />
 
 	<CheckBoxPreference
