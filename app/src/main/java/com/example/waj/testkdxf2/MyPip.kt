@@ -17,17 +17,15 @@ class MyPip(private val size:Int){
 
     fun enqueue(data: Int) {
         tail.next = Node(data)
-
+        head = head.next!!
     }
 
     fun getDatas():List<Int> {
         val list = arrayListOf<Int>()
-        head?.let {
-            var p:Node = it
-            while (p!=tail){
-                list.add(p.data)
-                p = p.next!!
-            }
+        var p: Node = head
+        while (p != tail) {
+            list.add(p.data)
+            p = p.next!!
         }
         return list
     }
