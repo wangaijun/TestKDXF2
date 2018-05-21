@@ -20,12 +20,13 @@ class MyView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
         if (canvas==null) return
         val c:Canvas = canvas
         val cw = width/ size
-        val i = 0
+        var i = 0
         var x = 0
         while (i< size){
             x += cw / 2
             val y = pip.getDatas()[i]
             c.drawCircle(x.toFloat(),y.toFloat(),5.toFloat(),paint)
+            i++
         }
     }
 

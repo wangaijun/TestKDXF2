@@ -79,6 +79,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         override fun onVolumeChanged(volume: Int, data: ByteArray) {
             showTip("当前正在说话，音量大小：$volume")
             Log.d(TAG, "返回音频数据：${data.size}")
+            myView.pip.enqueue(data.size)
         }
 
         override fun onEvent(eventType: Int, arg1: Int, arg2: Int, obj: Bundle?) {
