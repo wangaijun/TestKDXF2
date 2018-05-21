@@ -186,15 +186,18 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
                 finish()
             }
             R.id.btnPlayVoice->{
-                if ("停止"!=btnPlayVoice.text){
+                /**使用tag来区分播放状态*/
+                if ("stop"!=btnPlayVoice.tag){
                     mediaPlayer.setDataSource(Environment.getExternalStorageDirectory().toString() + "/msc/iat.wav")
                     mediaPlayer.prepare()
                     mediaPlayer.start()
-                    btnPlayVoice.text = "停止"
+                    btnPlayVoice.text = "停止播放"
+                    btnPlayVoice.tag = "stop"
                 }
                 else{
                     mediaPlayer.reset()
                     btnPlayVoice.text = "播放声音"
+                    btnPlayVoice.tag = ""
                 }
             }
             R.id.save->{
