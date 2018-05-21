@@ -24,30 +24,14 @@ class MyView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
         val c:Canvas = canvas
         val cw = width/size
         var i = 0
-        var x = cw/2
-        val arr = FloatArray(size*4-1)
+        var x = 0F
         while (i< size){
             x += cw
-            val y = pip.getDatas()[i]*3
-            if (i==0) {
-                arr[4*i] = x.toFloat()
-                arr[4*i + 1] = y.toFloat()
-            }
-            else if (i== size-1){
-                arr[4*(i-1) + 2] = x.toFloat()
-                arr[4*(i-1) + 3] = y.toFloat()
-            }
-            else{
-                arr[4*(i-1) + 2] = x.toFloat()
-                arr[4*(i-1) + 3] = y.toFloat()
-                arr[4*i] = x.toFloat()
-                arr[4*i + 1] = y.toFloat()
-            }
-
+            val y = 45F
+            paint.strokeWidth = pip.getDatas()[i].toFloat()*3
+            c.drawLine(x-cw/2,y,x+cw/2,y,paint)
             i++
-            println("waj:$x,$y")
         }
-        c.drawLines(arr,paint)
     }
 
     companion object {
