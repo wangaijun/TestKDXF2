@@ -6,16 +6,23 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import android.content.res.TypedArray
+import com.iflytek.voicedemo.R
+
 
 /**
  * Created by waj on 18-5-18.
  */
-class MyView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
+class VoiceEffectView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
     val pip: MyPip = MyPip(size)
     val paint:Paint = Paint()
     lateinit var t:MyThread
     init {
-        paint.color = Color.RED
+        context?.let {
+            val typedArray = context.obtainStyledAttributes(attrs, R.styleable.VoiceEffectView)
+            val paintColor = typedArray.getColor(R.styleable.VoiceEffectView_paintColor,Color.RED)
+            paint.color = paintColor
+        }
     }
 
     override fun onDraw(canvas: Canvas?) {
