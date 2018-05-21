@@ -16,6 +16,7 @@ class MyView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
     lateinit var t:MyThread
     init {
         paint.color = Color.RED
+        paint.strokeWidth = 3.toFloat()
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -24,17 +25,21 @@ class MyView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
         val cw = width/size
         var i = 0
         var x = cw/2
+        val arr = FloatArray(size*2)
         while (i< size){
             x += cw
-            val y = pip.getDatas()[i]
-            c.drawCircle(x.toFloat(),y.toFloat(),5.toFloat(),paint)
+            arr[2*i] = x.toFloat()
+            val y = pip.getDatas()[i]*3
+            arr[2*i+1] = y.toFloat()
+//            c.drawCircle(x.toFloat(),y.toFloat(),3.toFloat(),paint)
             i++
             println("waj:$x,$y")
         }
+        c.drawLines(arr,paint)
     }
 
     companion object {
-        const val size = 20
+        const val size = 200
     }
 
     override fun onAttachedToWindow() {
