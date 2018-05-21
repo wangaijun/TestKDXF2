@@ -38,6 +38,8 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
 
     private var ret = 0 // 函数调用返回值
 
+    private val mediaPlayer = MediaPlayer()
+
     /**
      * 初始化监听器。
      */
@@ -178,21 +180,29 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
                     }
                 }
             }
-         // 取消听写
+         // 关闭窗体
             R.id.iat_cancel -> {
+                mediaPlayer.release()
                 finish()
             }
             R.id.btnPlayVoice->{
-                val mp = MediaPlayer()
-                mp.setDataSource(Environment.getExternalStorageDirectory().toString() + "/msc/iat.wav")
-                mp.prepare()
-                mp.start()
+                if ("停止"!=btnPlayVoice.text){
+                    mediaPlayer.setDataSource(Environment.getExternalStorageDirectory().toString() + "/msc/iat.wav")
+                    mediaPlayer.prepare()
+                    mediaPlayer.start()
+                    btnPlayVoice.text = "停止"
+                }
+                else{
+                    mediaPlayer.reset()
+                    btnPlayVoice.text = "播放声音"
+                }
             }
             R.id.save->{
                 val intent = Intent()
                 intent.putExtra("txt",etResult.text.toString())
                 intent.putExtra("path",Environment.getExternalStorageDirectory().toString() + "/msc/iat.wav")
                 setResult(RESULT_OK,intent)
+                mediaPlayer.release()
                 finish()
             }
             else -> {
