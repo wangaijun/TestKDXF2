@@ -26,7 +26,7 @@ class MyView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
         var x = 0F
         while (i< size){
             x += cw
-            val y = 45F
+            val y = height/2F
             paint.strokeWidth = pip.getDatas()[i].toFloat()*3
             c.drawLine(x-cw/2,y,x+cw/2,y,paint)
             println("waj:${x-cw/2},${x+cw/2}")
