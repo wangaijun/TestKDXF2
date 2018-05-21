@@ -21,7 +21,7 @@ class MyView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
     override fun onDraw(canvas: Canvas?) {
         if (canvas==null) return
         val c:Canvas = canvas
-        val cw = width/size
+        val cw = width*1.0F/size
         var i = 0
         var x = 0F
         while (i< size){
@@ -29,12 +29,13 @@ class MyView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
             val y = 45F
             paint.strokeWidth = pip.getDatas()[i].toFloat()*3
             c.drawLine(x-cw/2,y,x+cw/2,y,paint)
+            println("waj:${x-cw/2},${x+cw/2}")
             i++
         }
     }
 
     companion object {
-        const val size = 200
+        const val size = 600
     }
 
     override fun onAttachedToWindow() {
