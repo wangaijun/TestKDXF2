@@ -25,13 +25,25 @@ class MyView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
         val cw = width/size
         var i = 0
         var x = cw/2
-        val arr = FloatArray(size*2)
+        val arr = FloatArray(size*4-1)
         while (i< size){
             x += cw
-            arr[2*i] = x.toFloat()
             val y = pip.getDatas()[i]*3
-            arr[2*i+1] = y.toFloat()
-//            c.drawCircle(x.toFloat(),y.toFloat(),3.toFloat(),paint)
+            if (i==0) {
+                arr[4*i] = x.toFloat()
+                arr[4*i + 1] = y.toFloat()
+            }
+            else if (i== size-1){
+                arr[4*(i-1) + 2] = x.toFloat()
+                arr[4*(i-1) + 3] = y.toFloat()
+            }
+            else{
+                arr[4*(i-1) + 2] = x.toFloat()
+                arr[4*(i-1) + 3] = y.toFloat()
+                arr[4*i] = x.toFloat()
+                arr[4*i + 1] = y.toFloat()
+            }
+
             i++
             println("waj:$x,$y")
         }
