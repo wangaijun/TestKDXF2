@@ -16,7 +16,6 @@ class MyView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
     lateinit var t:MyThread
     init {
         paint.color = Color.RED
-        paint.strokeWidth = 3.toFloat()
     }
 
     override fun onDraw(canvas: Canvas?) {
