@@ -1,11 +1,11 @@
-package com.example.waj.testkdxf2
+package com.iflytek
 
 /**
  * Created by waj on 18-5-18.
  */
 class MyPip(private val size:Int){
-    var head:Node=Node(0)
-    var tail:Node=head
+    var head: Node = Node(0)
+    var tail: Node =head
 
     init {
         var i = 1
@@ -23,7 +23,7 @@ class MyPip(private val size:Int){
     fun getDatas():List<Int> {
         val list = arrayListOf<Int>()
         var p: Node = head
-        while (p != tail) {
+        while (p != tail.next) {
             list.add(p.data)
             p = p.next!!
         }
