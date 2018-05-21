@@ -40,6 +40,10 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
 
     private val mediaPlayer = MediaPlayer()
 
+    private lateinit var voiceFileName:String
+
+    private var pathDir = Environment.getExternalStorageDirectory().toString() + "/msc"
+
     /**
      * 初始化监听器。
      */
@@ -118,6 +122,8 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_speech_recognize)
 
+        getPassedValues()
+
         setViewListener()
         // 初始化识别无UI识别对象
         // 使用SpeechRecognizer对象，可根据回调消息自定义界面；
@@ -130,6 +136,11 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         sharedPreferences = getSharedPreferences(SpeechRecognizeSettings.PREFER_NAME,
                 Activity.MODE_PRIVATE)
         toast = Toast.makeText(this, "", Toast.LENGTH_SHORT)
+    }
+
+    private fun getPassedValues() {
+        val pd = intent.getStringExtra("pathDir")
+        pd?.let { pathDir = it }
     }
 
     /**
@@ -188,7 +199,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
             R.id.btnPlayVoice->{
                 /**使用tag来区分播放状态*/
                 if ("stop"!=btnPlayVoice.tag){
-                    mediaPlayer.setDataSource(Environment.getExternalStorageDirectory().toString() + "/msc/iat.wav")
+                    mediaPlayer.setDataSource(voiceFileName)
                     mediaPlayer.prepare()
                     mediaPlayer.start()
                     btnPlayVoice.text = "停止播放"
@@ -203,7 +214,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
             R.id.save->{
                 val intent = Intent()
                 intent.putExtra("txt",etResult.text.toString())
-                intent.putExtra("path",Environment.getExternalStorageDirectory().toString() + "/msc/iat.wav")
+                intent.putExtra("path", voiceFileName)
                 setResult(RESULT_OK,intent)
                 mediaPlayer.release()
                 finish()
@@ -284,7 +295,8 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         // 设置音频保存路径，保存音频格式支持pcm、wav，设置路径为sd卡请注意WRITE_EXTERNAL_STORAGE权限
         // 注：AUDIO_FORMAT参数语记需要更新版本才能生效
         speechRecognizer!!.setParameter(SpeechConstant.AUDIO_FORMAT, "wav")
-        speechRecognizer!!.setParameter(SpeechConstant.ASR_AUDIO_PATH, Environment.getExternalStorageDirectory().toString() + "/msc/iat.wav")
+        voiceFileName = pathDir +"/iat"+System.currentTimeMillis()+".wav"
+        speechRecognizer!!.setParameter(SpeechConstant.ASR_AUDIO_PATH, voiceFileName)
     }
 
     override fun onDestroy() {
