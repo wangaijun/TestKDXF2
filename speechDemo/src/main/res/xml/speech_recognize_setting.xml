@@ -9,10 +9,6 @@
         android:summary="目前免费Api仅支持：普通话，粤语，英语，四川话"
         android:defaultValue="mandarin"  />
 
-	<CheckBoxPreference
-		android:key="@string/pref_key_iat_show"
-		android:title="@string/pref_title_iat_show"
-		android:defaultValue="true" />
 
 </PreferenceScreen>
 
