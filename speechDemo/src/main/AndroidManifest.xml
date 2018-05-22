@@ -30,7 +30,6 @@
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
             android:screenOrientation="portrait">
         </activity>
-        <!-- 移动统计分析 -->
         <meta-data
             android:name="IFLYTEK_APPKEY"
             android:value="&apos;5afd2651&apos;" />
