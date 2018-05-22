@@ -21,11 +21,11 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
-        android:name=".SpeechApp"
+        android:name="com.iflytek.SpeechApp"
         >
-        <activity android:name="com.iflytek.speech.setting.SpeechRecognizeSettings"></activity>
+        <activity android:name="com.iflytek.activity.SpeechRecognizeSettingsActivity"></activity>
         <activity
-            android:name=".SpeechRecognizeActivity"
+            android:name="com.iflytek.activity.SpeechRecognizeActivity"
             android:theme="@style/dialog"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
             android:screenOrientation="portrait">

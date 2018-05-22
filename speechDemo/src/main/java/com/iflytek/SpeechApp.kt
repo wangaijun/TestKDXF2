@@ -1,8 +1,8 @@
-package com.iflytek.voicedemo
+package com.iflytek
 
 import android.app.Application
-import com.iflytek.cloud.Setting
 import com.iflytek.cloud.SpeechUtility
+import com.iflytek.voicedemo.R
 
 class SpeechApp : Application() {
 

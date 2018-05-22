@@ -1,4 +1,4 @@
-package com.iflytek.voicedemo
+package com.iflytek.activity
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -15,8 +15,8 @@ import android.widget.Toast
 import com.iflytek.cloud.*
 import com.iflytek.cloud.ui.RecognizerDialog
 import com.iflytek.cloud.ui.RecognizerDialogListener
-import com.iflytek.speech.setting.SpeechRecognizeSettings
-import com.iflytek.speech.util.JsonParser
+import com.iflytek.util.JsonParser
+import com.iflytek.voicedemo.R
 import kotlinx.android.synthetic.main.activity_speech_recognize.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -133,7 +133,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         // 使用UI听写功能，请根据sdk文件目录下的notice.txt,放置布局文件和图片资源
         recognizerDialog = RecognizerDialog(this, mInitListener)
 
-        sharedPreferences = getSharedPreferences(SpeechRecognizeSettings.PREFER_NAME,
+        sharedPreferences = getSharedPreferences(SpeechRecognizeSettingsActivity.PREFER_NAME,
                 Activity.MODE_PRIVATE)
         toast = Toast.makeText(this, "", Toast.LENGTH_SHORT)
     }
@@ -164,7 +164,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
         when (view.id) {
         // 进入参数设置页面
             R.id.image_iat_set -> {
-                val intents = Intent(this, SpeechRecognizeSettings::class.java)
+                val intents = Intent(this, SpeechRecognizeSettingsActivity::class.java)
                 startActivity(intents)
             }
         // 开始听写
@@ -196,7 +196,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
                 mediaPlayer.release()
                 finish()
             }
-            R.id.btnPlayVoice->{
+            R.id.btnPlayVoice ->{
                 /**使用tag来区分播放状态*/
                 if ("stop"!=btnPlayVoice.tag){
                     mediaPlayer.setDataSource(voiceFileName)
@@ -211,7 +211,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
                     btnPlayVoice.tag = ""
                 }
             }
-            R.id.save->{
+            R.id.save ->{
                 val intent = Intent()
                 intent.putExtra("txt",etResult.text.toString())
                 intent.putExtra("path", voiceFileName)

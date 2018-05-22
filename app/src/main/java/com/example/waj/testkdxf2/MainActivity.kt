@@ -5,7 +5,7 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Environment
-import com.iflytek.voicedemo.SpeechRecognizeActivity
+import com.iflytek.activity.SpeechRecognizeActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : Activity() {

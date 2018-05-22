@@ -43,7 +43,7 @@
         android:paddingBottom="10dp"
         android:textSize="20sp" />
 
-    <com.iflytek.VoiceEffectView
+    <com.iflytek.widget.VoiceEffectView
         android:id="@+id/myView"
         android:layout_width="match_parent"
         android:layout_height="30dp"

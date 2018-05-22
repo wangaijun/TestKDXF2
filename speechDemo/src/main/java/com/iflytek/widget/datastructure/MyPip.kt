@@ -1,4 +1,4 @@
-package com.iflytek
+package com.iflytek.widget.datastructure
 
 /**
  * Created by waj on 18-5-18.

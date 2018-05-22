@@ -1,9 +1,9 @@
-package com.iflytek.draw
+package com.iflytek.widget.draw
 
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
-import com.iflytek.MyPip
+import com.iflytek.widget.datastructure.MyPip
 
 /**
  * Created by waj on 18-5-22.

@@ -1,4 +1,4 @@
-package com.iflytek.speech.setting
+package com.iflytek.activity
 
 import android.os.Bundle
 import android.preference.Preference
@@ -10,7 +10,7 @@ import com.iflytek.voicedemo.R
 /**
  * 听写设置界面
  */
-class SpeechRecognizeSettings : PreferenceActivity(), OnPreferenceChangeListener {
+class SpeechRecognizeSettingsActivity : PreferenceActivity(), OnPreferenceChangeListener {
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         requestWindowFeature(Window.FEATURE_NO_TITLE)

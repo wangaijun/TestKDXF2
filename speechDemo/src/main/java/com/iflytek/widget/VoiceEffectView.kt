@@ -1,4 +1,4 @@
-package com.iflytek
+package com.iflytek.widget
 
 import android.content.Context
 import android.graphics.Canvas
@@ -6,8 +6,8 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
-import com.iflytek.draw.WaveDrawer
-import com.iflytek.draw.WaveLineDrawer
+import com.iflytek.widget.datastructure.MyPip
+import com.iflytek.widget.draw.WaveDrawer
 import com.iflytek.voicedemo.R
 
 
@@ -17,7 +17,7 @@ import com.iflytek.voicedemo.R
 class VoiceEffectView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
     val pip: MyPip = MyPip(size)
     val paint:Paint = Paint()
-    lateinit var t:MyThread
+    lateinit var t: MyThread
     init {
         context?.let {
             val typedArray = context.obtainStyledAttributes(attrs, R.styleable.VoiceEffectView)
@@ -34,7 +34,7 @@ class VoiceEffectView(context: Context?, attrs: AttributeSet?) : View(context, a
     }
 
     companion object {
-        const val size = 12
+        const val size = 600
     }
 
     override fun onAttachedToWindow() {

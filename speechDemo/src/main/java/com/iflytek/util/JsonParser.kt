@@ -1,4 +1,4 @@
-package com.iflytek.speech.util
+package com.iflytek.util
 
 import org.json.JSONObject
 import org.json.JSONTokener
