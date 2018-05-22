@@ -1,4 +1,4 @@
-package com.iflytek
+package com.example.waj.testkdxf2
 
 import android.app.Activity
 import android.content.Intent
@@ -33,7 +33,7 @@ class TestActivity : Activity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode!= RESULT_OK) return
         when(requestCode){
-            REQUEST_VOICE_INPUT->{
+            REQUEST_VOICE_INPUT ->{
                 data?.let {
                     val txt = it.getStringExtra("txt")
                     path = it.getStringExtra("path")
