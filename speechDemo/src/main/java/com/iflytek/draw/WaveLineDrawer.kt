@@ -4,7 +4,6 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
 import com.iflytek.MyPip
-import com.iflytek.VoiceEffectView
 
 /**
  * Created by waj on 18-5-22.
