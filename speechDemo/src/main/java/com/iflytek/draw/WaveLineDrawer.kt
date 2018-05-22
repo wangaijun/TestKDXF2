@@ -20,18 +20,26 @@ class WaveLineDrawer: Drawer(){
         var x=0F
         val cw = width/size
         path.reset()
-        path.moveTo(-cw,0F)
+        path.moveTo(-cw,0f)
         val datas = arrayListOf<Int>()
         pip.getDatas().forEach { datas.add(it) }  //估计10为中值,从10分开,分成两部分
-        while (i<size/3){
-            x += i*3*cw
-            path.cubicTo(x, datas[i*3]*2F,x+cw, datas[i*3+1]*2F, x+2*cw, datas[i*3+2]*2F)
-            path.moveTo(x+2*cw, datas[i*3+1]*2F)
+        var v2 = 0f
+        while (i<size){
+            x += i*cw
+            val v1 = getNextSign(v2) * v2
+            v2 = getNextSign(v1)*datas[i] * 2F
+            path.quadTo(x, v1,x+cw/2, v2)
+            path.moveTo(x+cw/2, v2)
             i++
         }
         paint.style = Paint.Style.STROKE
+        paint.strokeWidth = 3.toFloat()
 //        paint.isAntiAlias = true
         c.drawPath(path,paint)
+    }
+
+    private fun getNextSign(v: Float): Int {
+        return if (v>=0) -1 else 1
     }
 
     /**
