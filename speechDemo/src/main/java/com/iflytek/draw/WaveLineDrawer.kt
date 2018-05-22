@@ -28,7 +28,6 @@ class WaveLineDrawer: Drawer(){
             i++
         }
         c.drawPath(path,paint)
-        c.drawText("hello,world",50F,60F,paint)
     }
 
     /**
