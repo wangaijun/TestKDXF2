@@ -119,6 +119,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
     @SuppressLint("ShowToast")
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setFinishOnTouchOutside(false)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_speech_recognize)
 
