@@ -3,25 +3,16 @@ package com.iflytek.widget.datastructure
 /**
  * Created by waj on 18-5-18.
  */
-class MyPip(private val size:Int){
+class MyPip(private val capacity:Int){
     var head: Node = Node(0)
     var tail: Node =head
-    var length:Int = 1
-
-//    init {
-//        var i = 1
-//        while (i<size){
-//            tail.next = Node(0)
-//            tail = tail.next!!
-//            i++
-//        }
-//    }
+    var sizd:Int = 1
 
     fun enqueue(data: Int) {
         tail.next = Node(data)
         tail = tail.next!!
-        if (length<size) {
-            length += 1
+        if (sizd<capacity) {
+            sizd += 1
         }
         else{
             head = head.next!!
@@ -38,4 +29,5 @@ class MyPip(private val size:Int){
         list.add(tail.data)
         return list
     }
+
 }
