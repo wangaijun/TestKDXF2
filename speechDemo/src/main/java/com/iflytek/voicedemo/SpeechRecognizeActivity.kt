@@ -175,7 +175,7 @@ class SpeechRecognizeActivity : Activity(), OnClickListener {
                 // 设置参数
                 setParam()
                 val isShowDialog = sharedPreferences!!.getBoolean(
-                        getString(R.string.pref_key_iat_show), true)
+                        getString(R.string.pref_key_iat_show), false)
                 if (isShowDialog) {
                     // 显示听写对话框
                     recognizerDialog!!.setListener(mRecognizerDialogListener)
