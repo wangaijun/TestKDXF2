@@ -5,18 +5,18 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Environment
-import com.iflytek.voicedemo.R
 import com.iflytek.voicedemo.SpeechRecognizeActivity
-import kotlinx.android.synthetic.main.activity_test.*
+import kotlinx.android.synthetic.main.activity_main.*
 
-class TestActivity : Activity() {
+class MainActivity : Activity() {
+
     var path:String?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_test)
+        setContentView(R.layout.activity_main)
 
         btn1.setOnClickListener{
-            startActivityForResult(Intent(this,SpeechRecognizeActivity::class.java), REQUEST_VOICE_INPUT)
+            startActivityForResult(Intent(this, SpeechRecognizeActivity::class.java), REQUEST_VOICE_INPUT)
         }
 
         btn2.setOnClickListener{
