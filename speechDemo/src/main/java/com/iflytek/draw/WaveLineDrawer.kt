@@ -11,6 +11,7 @@ import com.iflytek.VoiceEffectView
  */
 class WaveLineDrawer: Drawer(){
     val path = Path()
+
     override fun draw(c: Canvas, width: Float, height: Float, pip: MyPip, paint: Paint) {
         val size = VoiceEffectView.size
         path.reset()
@@ -22,7 +23,7 @@ class WaveLineDrawer: Drawer(){
         val datas = pip.getDatas()
         while (i<size/2){
             x += i*2*cw
-            path.rQuadTo(x, datas[i]*3F,x+cw, datas[i+1]*3F)
+            path.rQuadTo(x, datas[i*2]*3F,x+cw, datas[i*2+1]*3F)
             i++
         }
         c.drawPath(path,paint)
