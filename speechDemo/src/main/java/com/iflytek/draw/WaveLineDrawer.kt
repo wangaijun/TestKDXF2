@@ -14,19 +14,21 @@ class WaveLineDrawer: Drawer(){
 
     override fun draw(c: Canvas, width: Float, height: Float, pip: MyPip, paint: Paint) {
         val size = VoiceEffectView.size
-        path.reset()
         val y = height/2
         var i=0
         var x=0F
         val cw = width/size
+        path.reset()
         path.moveTo(-cw,y)
         val datas = pip.getDatas()
-        while (i<size/2){
-            x += i*2*cw
-            path.rQuadTo(x, datas[i*2]*3F,x+cw, datas[i*2+1]*3F)
+        while (i<size/3){
+            x += i*3*cw
+            path.cubicTo(x, datas[i*3]*3F,x+cw, datas[i*3+1]*3F, x+2*cw, datas[i*3+2]*3F)
+            path.moveTo(x+2*cw, datas[i*3+2]*3F)
             i++
         }
         c.drawPath(path,paint)
+        c.drawText("hello,world",50F,60F,paint)
     }
 
     /**

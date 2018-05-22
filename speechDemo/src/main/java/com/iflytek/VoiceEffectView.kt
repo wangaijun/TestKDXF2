@@ -34,7 +34,7 @@ class VoiceEffectView(context: Context?, attrs: AttributeSet?) : View(context, a
     }
 
     companion object {
-        const val size = 600
+        const val size = 12
     }
 
     override fun onAttachedToWindow() {
