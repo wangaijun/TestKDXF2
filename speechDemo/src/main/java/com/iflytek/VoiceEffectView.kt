@@ -29,8 +29,8 @@ class VoiceEffectView(context: Context?, attrs: AttributeSet?) : View(context, a
     override fun onDraw(canvas: Canvas?) {
         if (canvas==null) return
         val c:Canvas = canvas
-//        WaveDrawer().draw(c,width.toFloat(),height.toFloat(),pip,paint)
-        WaveLineDrawer().draw(c,width.toFloat(),height.toFloat(),pip,paint)
+        WaveDrawer().draw(c,width.toFloat(),height.toFloat(),pip,paint)
+//        WaveLineDrawer().draw(c,width.toFloat(),height.toFloat(),pip,paint)
     }
 
     companion object {
