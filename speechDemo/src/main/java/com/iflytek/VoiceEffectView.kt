@@ -7,6 +7,7 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 import com.iflytek.draw.WaveDrawer
+import com.iflytek.draw.WaveLineDrawer
 import com.iflytek.voicedemo.R
 
 
@@ -28,7 +29,8 @@ class VoiceEffectView(context: Context?, attrs: AttributeSet?) : View(context, a
     override fun onDraw(canvas: Canvas?) {
         if (canvas==null) return
         val c:Canvas = canvas
-        WaveDrawer().draw(c,width.toFloat(),height.toFloat(),pip,paint)
+//        WaveDrawer().draw(c,width.toFloat(),height.toFloat(),pip,paint)
+        WaveLineDrawer().draw(c,width.toFloat(),height.toFloat(),pip,paint)
     }
 
     companion object {
