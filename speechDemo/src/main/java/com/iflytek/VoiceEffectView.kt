@@ -6,7 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
-import android.content.res.TypedArray
+import com.iflytek.draw.WaveDrawer
 import com.iflytek.voicedemo.R
 
 
@@ -28,17 +28,7 @@ class VoiceEffectView(context: Context?, attrs: AttributeSet?) : View(context, a
     override fun onDraw(canvas: Canvas?) {
         if (canvas==null) return
         val c:Canvas = canvas
-        val cw = width*1.0F/size
-        var i = 0
-        var x = 0F
-        while (i< size){
-            x += cw
-            val y = height/2F
-            paint.strokeWidth = pip.getDatas()[i].toFloat()*3
-            c.drawLine(x-cw/2,y,x+cw/2,y,paint)
-            println("waj:${x-cw/2},${x+cw/2}")
-            i++
-        }
+        WaveDrawer().draw(c,width.toFloat(),height.toFloat(),pip,paint)
     }
 
     companion object {
