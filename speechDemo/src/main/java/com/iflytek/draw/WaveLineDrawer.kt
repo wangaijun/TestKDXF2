@@ -15,18 +15,22 @@ class WaveLineDrawer: Drawer(){
     override fun draw(c: Canvas, width: Float, height: Float, pip: MyPip, paint: Paint) {
         val size = VoiceEffectView.size
         val y = height/2
+        c.translate(0F,y)
         var i=0
         var x=0F
         val cw = width/size
         path.reset()
-        path.moveTo(-cw,y)
-        val datas = pip.getDatas()
+        path.moveTo(-cw,0F)
+        val datas = arrayListOf<Int>()
+        pip.getDatas().forEach { datas.add(it) }  //估计10为中值,从10分开,分成两部分
         while (i<size/3){
             x += i*3*cw
-            path.cubicTo(x, datas[i*3]*3F,x+cw, datas[i*3+1]*3F, x+2*cw, datas[i*3+2]*3F)
-            path.moveTo(x+2*cw, datas[i*3+2]*3F)
+            path.cubicTo(x, datas[i*3]*2F,x+cw, datas[i*3+1]*2F, x+2*cw, datas[i*3+2]*2F)
+            path.moveTo(x+2*cw, datas[i*3+1]*2F)
             i++
         }
+        paint.style = Paint.Style.STROKE
+//        paint.isAntiAlias = true
         c.drawPath(path,paint)
     }
 
@@ -38,7 +42,7 @@ class WaveLineDrawer: Drawer(){
     val arr = FloatArray(size*4-1)
     while (i< size){
     x += cw
-    val y = pip.getDatas()[i]*3F
+    val y = pip.getDatas()[i]*2F
     if (i==0) {
     arr[4*i] = x
     arr[4*i + 1] = y
