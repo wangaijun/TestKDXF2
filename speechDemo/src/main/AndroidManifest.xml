@@ -22,8 +22,7 @@
 
     <application
         android:name=".SpeechApp"
-        android:icon="@drawable/icon"
-        android:label="讯飞语音示例">
+        >
         <activity android:name="com.iflytek.speech.setting.SpeechRecognizeSettings"></activity>
         <activity
             android:name=".SpeechRecognizeActivity"
